@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import './css/App.css';
 import allQuestions from './allQuestions';
-import FirstFlow from './ActivityFlowTypes/FirstFlow';
-import SecondFlow from './ActivityFlowTypes/SecondFlow';
+import ActivityFlow from './ActivityFlowTypes/ActivityFlow';
+
 function App() {
   //allQuestion is the JSON data from s3
   let allActivity = allQuestions['activities'];
-  const [activityOneClicked, setActivityOneStatus] = useState(false);
-  const [activityTwoClicked, setActivityTwoStatus] = useState(false);
+  const [activityClicked, setActivityStatus] = useState(false);
+  const [activityNum, setActivityNumber] = useState(0);
+
   return (
     <div className="App">
       <div>
         {
-          !activityOneClicked && !activityTwoClicked &&
+          //Show home page when activity is not clicked
+          !activityClicked &&
           <div>
             <header className="App-header">
               <p>
@@ -20,17 +22,22 @@ function App() {
               </p>
             </header>
             Error Find
-            <div><a onClick={()=>{setActivityOneStatus(true)}}>ACTIVITY ONE</a></div>
-            <div><a onClick={()=>{setActivityTwoStatus(true)}}>ACTIVITY TWO</a></div>
+            <div>
+              <button onClick={()=>{setActivityNumber(1);setActivityStatus(true)}}>
+                ACTIVITY ONE
+              </button>
+            </div>
+            <div>
+              <button onClick={()=>{setActivityNumber(2);setActivityStatus(true)}}>
+                ACTIVITY TWO
+              </button>
+            </div>
           </div>
         }
         {
-          activityOneClicked && !activityTwoClicked &&
-          <FirstFlow questions={allActivity[0]['questions']}/>
-        }
-        {
-          !activityOneClicked && activityTwoClicked &&
-          <SecondFlow questions={allActivity[1]['questions']}/>
+          activityClicked &&
+          <ActivityFlow allActivity={allActivity} activityNum={activityNum} 
+          showHomeScreen={()=>{setActivityStatus(false)}}/>
         }
       </div>
     </div>

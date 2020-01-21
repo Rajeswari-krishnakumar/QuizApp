@@ -5,8 +5,16 @@ function FirstFlowResult(props){
 		return allResult;
 	},[])
 	return (
+
       <div>
+      	<div>
+      		ACTIVITY ONE
+      	</div>
+      	<h1>
+      		Results
+      	</h1>
       	{allResults}
+      	<button onClick={props.showHomeScreen}> Home </button>
       </div>)
 
 }
