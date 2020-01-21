@@ -10,18 +10,16 @@ function App() {
   const [activityNum, setActivityNumber] = useState(0);
 
   return (
-    <div className="App">
+    <div>
       <div>
         {
           //Show home page when activity is not clicked
           !activityClicked &&
-          <div>
-            <header className="App-header">
-              <p>
-               CAE
-              </p>
+          <div className="centerContent homeScreen">
+            <header>
+              <h3>CAE</h3>
+              <h1>Error Find</h1>
             </header>
-            Error Find
             <div>
               <button onClick={()=>{setActivityNumber(1);setActivityStatus(true)}}>
                 ACTIVITY ONE

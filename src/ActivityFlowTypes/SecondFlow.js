@@ -25,6 +25,11 @@ function SecondFlow(props){
 		initialLoad = false;
 		showRoundNumScreen();
 	}
+	function showHomeScreen(){
+		result=[];
+		initialLoad=true;
+		props.showHomeScreen();
+	}
 	function nextQuestion(userAns){
 		allQuestions = props['questions'][roundNum-1]['questions'];
 		let correctAns = allQuestions[questionNum-1]['is_correct'];
@@ -60,11 +65,11 @@ function SecondFlow(props){
     	<div>
     	{
 			showRoundNum &&
-			<div>
-    			<h1>
+			<div className="centerContent">
+    			<h4 className="extraMargin">
     				ACTIVITY TWO
-    			</h1>
-    			<h2>
+    			</h4>
+    			<h2 className="extraMargin">
     				ROUND {roundNum}
     			</h2>
     		</div>
@@ -72,17 +77,20 @@ function SecondFlow(props){
     	{
     		//If there are more questions, then show the questions.Else, show the result screen
       		!showRoundNum && questionArr ? (
-	      		<div>
-	      			<div>ACTIVITY TWO / Round {roundNum}</div>
-	      			<div>Q{questionNum}.</div>
-		      		{questionArr[0]}<strong>{questionArr[1]}</strong>{questionArr[2]}
-		      		{allQuestions[questionNum-1]['stimulus']}
-		      		<button onClick={()=>nextQuestion(true)}>CORRECT</button>
-		      		<button onClick={()=>nextQuestion(false)}>INCORRECT</button>
+	      		<div className="centerContent">
+	      			<h4 className="extraMargin">ACTIVITY TWO / Round {roundNum}</h4>
+	      			<h1 className="extraMargin">Q{questionNum}.</h1>
+	      			<div className="greyBackground">
+		      			{questionArr[0]}<strong>{questionArr[1]}</strong>{questionArr[2]}
+		      		</div>
+		      		<div>
+		      			<button className="centerButton" onClick={()=>nextQuestion(true)}>CORRECT</button>
+		      			<button className="centerButton" onClick={()=>nextQuestion(false)}>INCORRECT</button>
+		      		</div>
 	      		</div>
 	      		):(
 	      		!showRoundNum &&
-	      			<SecondFlowResult results={result} showHomeScreen={props.showHomeScreen}/>
+	      			<SecondFlowResult results={result} showHomeScreen={showHomeScreen}/>
 	      		)
     	}
     	</div>)

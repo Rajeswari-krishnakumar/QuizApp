@@ -4,7 +4,6 @@ import SecondFlow from './SecondFlow';
 //This is activity landing page
 function ActivityFlow(props){
 	let allActivity = props.allActivity;
-	console.log(props);
 	return (
       <div>
       	{

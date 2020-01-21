@@ -6,6 +6,10 @@ function FirstFlow(props){
 	let allQuestions = props['questions'];
 	let questionArr;
 	const [questionNum, setQuestionNum] = useState(1);
+	function showHomeScreen(){
+		result=[];
+		props.showHomeScreen();
+	}
 	function nextQuestion(userAns){
 		//questionNum -1 => to match the array index
 		let correctAns = allQuestions[questionNum-1]['is_correct'];
@@ -26,15 +30,19 @@ function FirstFlow(props){
     	{
     		//If there are more questions, then show the questions.Else, show the result screen
       		questionArr ? (
-	      		<div>
-	      			<div>ACTIVITY ONE</div>
-	      			<div>Q{questionNum}.</div>
-		      		{questionArr[0]}<strong>{questionArr[1]}</strong>{questionArr[2]}
-		      		<button onClick={()=>nextQuestion(true)}>CORRECT</button>
-		      		<button onClick={()=>nextQuestion(false)}>INCORRECT</button>
+	      		<div className="centerContent">
+	      			<h4 className="extraMargin">ACTIVITY ONE</h4>
+	      			<h1 className="extraMargin">Q{questionNum}.</h1>
+	      			<div className="greyBackground">
+		      			{questionArr[0]}<strong>{questionArr[1]}</strong>{questionArr[2]}
+		      		</div>
+		      		<div>
+		      			<button className="centerButton" onClick={()=>nextQuestion(true)}>CORRECT</button>
+		      			<button className="centerButton" onClick={()=>nextQuestion(false)}>INCORRECT</button>
+		      		</div>
 	      		</div>
 	      		):(
-	      			<FirstFlowResult results={result} showHomeScreen={props.showHomeScreen}/>
+	      			<FirstFlowResult results={result} showHomeScreen={showHomeScreen} />
 	      		)
     	}
     	</div>)
