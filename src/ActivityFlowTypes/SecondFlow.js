@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SecondFlowResult from '.././ResultTypes/SecondFlowResult';
+import Question from './Question';
 
 let result = [], initialLoad=true;
 function sleep(ms) {
@@ -9,7 +10,7 @@ function SecondFlow(props){
 	const [roundNum, setRoundNum] = useState(1);
 	const [questionNum, setQuestionNum] = useState(1);
 	const [showRoundNum, setShowRoundNum] = useState(false);
-	let questionArr, allQuestions;
+	let allQuestions;
 
 	if(props['questions'][roundNum-1]){
 		allQuestions = props['questions'][roundNum-1]['questions'];
@@ -37,11 +38,10 @@ function SecondFlow(props){
 		if(!result[roundNum-1]){
 			result[roundNum-1] ={"round":roundNum,"result":[]}
 		}
-		if(userAns === correctAns){
-			result[roundNum-1]["result"].push('CORRECT')
-		}else{
-			result[roundNum-1]["result"].push('FALSE')
-		}
+		
+		userAns === correctAns ? result[roundNum-1]["result"].push('CORRECT'):
+								 result[roundNum-1]["result"].push('FALSE')
+		
 		//If there are no more questions, go to next round and start from 1st question
 		//Else go to next question in same round
 		if(!allQuestions[questionNum]){
@@ -56,10 +56,7 @@ function SecondFlow(props){
 			setQuestionNum(questionNum+1);
 		}
 	}
-	//Changes to show the text inbetween * in bold
-	if(allQuestions){
-		questionArr = allQuestions[questionNum-1]['stimulus'].split('*');
-	}
+	
 	return (
     	<div>
     	{
@@ -75,18 +72,9 @@ function SecondFlow(props){
     	}
     	{
     		//If there are more questions, then show the questions.Else, show the result screen
-      		!showRoundNum && questionArr ? (
-	      		<div className="centerContent">
-	      			<div className="extraMargin boldText">ACTIVITY TWO / Round {roundNum}</div>
-	      			<div className="biggerText boldText extraMargin">Q{questionNum}.</div>
-	      			<div className="greyBackground">
-		      			{questionArr[0]}<strong>{questionArr[1]}</strong>{questionArr[2]}
-		      		</div>
-		      		<div>
-		      			<button className="centerButton" onClick={()=>nextQuestion(true)}>CORRECT</button>
-		      			<button className="centerButton" onClick={()=>nextQuestion(false)}>INCORRECT</button>
-		      		</div>
-	      		</div>
+      		!showRoundNum && allQuestions ? (
+	      		<Question allQuestions={allQuestions} nextQuestion={nextQuestion}
+	      		questionNum={questionNum} heading={"ACTIVITY TWO / Round "+roundNum}/>
 	      		):(
 	      		!showRoundNum &&
 	      			<SecondFlowResult results={result} showHomeScreen={showHomeScreen}/>

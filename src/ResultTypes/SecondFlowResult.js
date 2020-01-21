@@ -1,4 +1,5 @@
 import React from 'react';
+import Result from './Result';
 function SecondFlowResult(props){
 	let allResults = props.results.reduce((allResult,resultObj,i)=>{
 		//Show the round number for each round
@@ -9,16 +10,8 @@ function SecondFlowResult(props){
 		return allResult;
 	},[])
 	return (
-		<div className="centerContent homeScreen" style={{padding:0}}>
-			<div className="boldText smallerText">
-				ACTIVITY TWO
-			</div>
-			<div className="biggerText boldText" style={{padding:"10px 20px"}}>
-				Results
-			</div>
-			{allResults}
-			<button onClick={props.showHomeScreen}> Home </button>
-		</div>)
+		<Result allResults={allResults} showHomeScreen={props.showHomeScreen} activityNum={"ACTIVITY TWO"}/>
+	)
 
 }
 export default SecondFlowResult;
