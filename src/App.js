@@ -11,33 +11,27 @@ function App() {
 
   return (
     <div>
-      <div>
-        {
-          //Show home page when activity is not clicked
-          !activityClicked &&
-          <div className="centerContent homeScreen">
-            <header>
-              <h3>CAE</h3>
-              <h1>Error Find</h1>
-            </header>
-            <div>
-              <button onClick={()=>{setActivityNumber(1);setActivityStatus(true)}}>
-                ACTIVITY ONE
-              </button>
-            </div>
-            <div>
-              <button onClick={()=>{setActivityNumber(2);setActivityStatus(true)}}>
-                ACTIVITY TWO
-              </button>
-            </div>
-          </div>
-        }
-        {
-          activityClicked &&
-          <ActivityFlow allActivity={allActivity} activityNum={activityNum} 
-          showHomeScreen={()=>{setActivityStatus(false)}}/>
-        }
-      </div>
+      {
+        //Show home page when activity is not clicked
+        !activityClicked &&
+        <div className="centerContent homeScreen">
+          <header>
+            <h3>CAE</h3>
+            <h1>Error Find</h1>
+          </header>
+            <button onClick={()=>{setActivityNumber(1);setActivityStatus(true)}}>
+              ACTIVITY ONE
+            </button>
+            <button onClick={()=>{setActivityNumber(2);setActivityStatus(true)}}>
+              ACTIVITY TWO
+            </button>
+        </div>
+      }
+      {
+        activityClicked &&
+        <ActivityFlow allActivity={allActivity} activityNum={activityNum} 
+        showHomeScreen={()=>{setActivityStatus(false)}}/>
+      }
     </div>
   );
 }

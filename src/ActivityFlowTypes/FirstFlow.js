@@ -31,8 +31,8 @@ function FirstFlow(props){
     		//If there are more questions, then show the questions.Else, show the result screen
       		questionArr ? (
 	      		<div className="centerContent">
-	      			<h4 className="extraMargin">ACTIVITY ONE</h4>
-	      			<h1 className="extraMargin">Q{questionNum}.</h1>
+	      			<div className="boldText extraMargin">ACTIVITY ONE</div>
+	      			<div className="biggerText boldText extraMargin">Q{questionNum}.</div>
 	      			<div className="greyBackground">
 		      			{questionArr[0]}<strong>{questionArr[1]}</strong>{questionArr[2]}
 		      		</div>

@@ -5,13 +5,12 @@ let result = [], initialLoad=true;
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
 function SecondFlow(props){
 	const [roundNum, setRoundNum] = useState(1);
 	const [questionNum, setQuestionNum] = useState(1);
 	const [showRoundNum, setShowRoundNum] = useState(false);
-
 	let questionArr, allQuestions;
+
 	if(props['questions'][roundNum-1]){
 		allQuestions = props['questions'][roundNum-1]['questions'];
 	}
@@ -66,20 +65,20 @@ function SecondFlow(props){
     	{
 			showRoundNum &&
 			<div className="centerContent">
-    			<h4 className="extraMargin">
+    			<div className="extraMargin boldText">
     				ACTIVITY TWO
-    			</h4>
-    			<h2 className="extraMargin">
+    			</div>
+    			<div className="biggerText boldText extraMargin">
     				ROUND {roundNum}
-    			</h2>
+    			</div>
     		</div>
     	}
     	{
     		//If there are more questions, then show the questions.Else, show the result screen
       		!showRoundNum && questionArr ? (
 	      		<div className="centerContent">
-	      			<h4 className="extraMargin">ACTIVITY TWO / Round {roundNum}</h4>
-	      			<h1 className="extraMargin">Q{questionNum}.</h1>
+	      			<div className="extraMargin boldText">ACTIVITY TWO / Round {roundNum}</div>
+	      			<div className="biggerText boldText extraMargin">Q{questionNum}.</div>
 	      			<div className="greyBackground">
 		      			{questionArr[0]}<strong>{questionArr[1]}</strong>{questionArr[2]}
 		      		</div>

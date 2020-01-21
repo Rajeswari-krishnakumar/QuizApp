@@ -9,16 +9,16 @@ function SecondFlowResult(props){
 		return allResult;
 	},[])
 	return (
-      <div className="centerContent homeScreen" style={{padding:0}}>
-      	<h5>
-      		ACTIVITY TWO
-      	</h5>
-      	<h1>
-      		Results
-      	</h1>
-      	{allResults}
-      	<button onClick={props.showHomeScreen}> Home </button>
-      </div>)
+		<div className="centerContent homeScreen" style={{padding:0}}>
+			<div className="boldText smallerText">
+				ACTIVITY TWO
+			</div>
+			<div className="biggerText boldText" style={{padding:"10px 20px"}}>
+				Results
+			</div>
+			{allResults}
+			<button onClick={props.showHomeScreen}> Home </button>
+		</div>)
 
 }
 export default SecondFlowResult;

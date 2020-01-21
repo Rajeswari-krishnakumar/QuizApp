@@ -18,6 +18,16 @@ button{
 .extraMargin{
 	margin: 30px;
 }
+.boldText{
+	font-weight: 700;
+}
+.biggerText{
+	font-size: 1.8em;
+}
+.smallerText{
+	font-size: 0.8em;
+	padding: 10px
+}
 .greyBackground{
 	background: #f2f2f2;
 	border-bottom: 1px solid #b4dbfd;
